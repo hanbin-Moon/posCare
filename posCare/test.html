@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+    <head>
+        <title>D3 loading CSV test</title>
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+    </head>
+
+    <body>
+
+        <script>
+
+            // var DSV_PARSER = d3.dsv(",", "text/plain;charset=ANSI");
+            // d3.text("data/hospital_basic_info.csv", function(getRows) {
+            //     var rows = DSV_PARSER.parseRows(getRows).map(function(row) {
+            //         return row.map(function(value) {
+    				// 	return value;
+            //         });
+            //     });
+            //     console.log("1: " + rows[0]);
+            // });
+            //
+            var DSV_PARSER2 = d3.dsv(",", "text/csv; charset=ISO-8859-1");
+            d3.csv("data/hospital_basic_info.csv", function(getRows) {
+                var rows = DSV_PARSER2.parseRows(getRows).map(function(row) {
+                    return row.map(function(value) {
+    					return value;
+                    });
+                });
+                console.log("2: " + rows[0]);
+            });
+
+            // var DSV_PARSER3 = d3.dsv(",", "text/plain;charset=EUC-KR");
+            // d3.text("data/hospital_basic_info.csv", function(getRows) {
+            //     var rows = DSV_PARSER3.parseRows(getRows).map(function(row) {
+            //         return row.map(function(value) {
+    				// 	return value;
+            //         });
+            //     });
+            //     console.log("3: " + rows[0]);
+            // });
+
+        </script>
+
+    </body>
+
+</html>

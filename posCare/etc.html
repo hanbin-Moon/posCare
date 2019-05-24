@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title>Etc - GAMMA by TEMM GAMMA</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta http-http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+      <link rel="stylesheet" href="assets/css/main.css" />
+      <script src="https://d3js.org/d3.v4.min.js"></script>
+   </head>
+
+   <body class="subpage">
+
+      <!-- Header -->
+         <header id="header">
+            <div class="logo"><a href="index.html">POSCARE <span>포스코 AI BigData Academy B반 3조</span></a></div>
+            <!-- <a href="#menu" class="toggle"><span>Menu</span></a> -->
+         </header>
+
+      <!-- Nav -->
+         <!-- <nav id="menu">
+            <ul class="links">
+               <li><a href="index.html">Home 화면 이동</a></li>
+               <li><a href="calculate.html">5대질환 진단</a></li>
+               <li><a href="etc.html">근처 병원 찾기</a></li>
+            </ul>
+         </nav> -->
+
+      <!-- Footer -->
+         <footer id="footer" class="wrapper">
+            <div class="inner">
+               <section>
+                  <div class="box">
+                     <div class="content">
+                        <h2 class="align-center">근처 병원 안내</h2>
+                        <!-- <textarea id="testx"></textarea>
+                        <textarea id="testy"></textarea> -->
+                        <hr/>
+
+                        <!-- 위치맵 -->
+                        <div id="map" style="width:100%; height:500px;"></div>
+
+                        <!-- <div class="field">
+                        <form action="#" method="post">
+                           <div class="field half first">
+                              <label for="name">Name</label>
+                              <input name="name" id="name" type="text" placeholder="Name">
+                           </div>
+                           <div class="field half">
+                              <label for="email">Email</label>
+                              <input name="email" id="email" type="email" placeholder="Email">
+                           </div>
+
+                           <div class="field">
+                              <label for="message">Message</label>
+                              <textarea name="message" id="message" rows="5" placeholder="Message"></textarea>
+                           </div>
+                           <ul class="actions align-center">
+                              <li><input value="Send" class="button special" type="submit"></li>
+                           </ul>
+                        </form>
+                     </div> -->
+                  </div>
+               </section>
+            </div>
+         </footer>
+         <!-- Three -->
+            <section id="Three" class="wrapper style2">
+                        <div class="inner">
+                           <header class="align-center">
+                              <h2>POSCO 사전 질병 예측 및 진단</h2>
+                              <p>경상북도 포항시 남구 지곡로 120 포스코인재창조원 B동</p>
+                              <p><font size : "4">Email : reward00@naver.com</font></p>
+                           </header>
+                        </div>
+            </section>
+
+
+      <!-- Scripts -->
+         <script src="assets/js/jquery.min.js"></script>
+         <script src="assets/js/jquery.scrolly.min.js"></script>
+         <script src="assets/js/jquery.scrollex.min.js"></script>
+         <script src="assets/js/util.js"></script>
+         <script src="assets/js/main.js"></script>
+         <script charset="utf-8" language="javascript">
+         var locations = [];
+         d3.csv("data/hospital.csv",function(data){
+           var i;
+
+           for(i=0;i<data.length;i++){
+             locations.push(data[i]);
+             document.getElementById("testx").value=data[i].x;
+             document.getElementById("testy").value=data[i].y;
+           }
+        });
+         function initMap() {
+           var map, infoWindow;
+           console.log(locations);
+           // alert(document.getElementById("testx").value);
+           map = new google.maps.Map(document.getElementById('map'), {
+             center: {lat: 36.0092, lng: 129.3232},
+             zoom: 15
+           });
+           infoWindow = new google.maps.InfoWindow  ;
+           var marker;
+           // alert(locations.length);
+           for (i = 0; i < locations.length; i++) {
+             console.log(locations[i].x);
+             console.log(locations[i].y);
+             marker = new google.maps.Marker({
+
+               position: new google.maps.LatLng(locations[i].x, locations[i].y),
+               map: map
+             });
+             google.maps.event.addListener(marker, 'click', (function(marker, i) {
+               return function() {
+                 infowindow.setContent(locations[i][0]);
+                 infowindow.open(map, marker);
+               }
+             })(marker, i));
+           }
+           // Try HTML5 geolocation.
+           if (navigator.geolocation) {
+             navigator.geolocation.getCurrentPosition(function(position) {
+               var pos = {
+                 lat: position.coords.latitude,
+                 lng: position.coords.longitude
+               };
+
+               infoWindow.setPosition(pos);
+               infoWindow.setContent('지금 현재위치는 여기입니다.');
+               infoWindow.open(map);
+               map.setCenter(pos);
+             }, function() {
+               handleLocationError(true, infoWindow, map.getCenter());
+             });
+           } else {
+             // Browser doesn't support Geolocation
+             handleLocationError(false, infoWindow, map.getCenter());
+           }
+         }
+
+         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+           infoWindow.setPosition(pos);
+           infoWindow.setContent(browserHasGeolocation ?
+                                 'Error: The Geolocation service failed.' :
+                                 'Error: Your browser doesn\'t support geolocation.');
+           infoWindow.open(map);
+         }
+         </script>
+         <script async defer
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKMYGcZZt1Lb7ymuqL7qCKL0tIOEI7uCo&callback=initMap">
+         </script>
+   </body>
+</html>

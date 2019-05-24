@@ -1,0 +1,421 @@
+<!DOCTYPE HTML>
+<!--
+	Transitive by TEMPLATED
+	templated.co @templatedco
+		Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+	-->
+<html>
+<head>
+	<title>질병예측 프로젝트</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+	<!-- <script>
+		zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+		ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+	</script> -->
+	<!-- <script src="http://code.jquery.com/jquery-1.11.0.js">/</script> -->
+
+
+	<style>
+		*,
+		*:before,
+		*:after {
+			box-sizing: border-box;
+		}
+
+		#myChart {
+			padding: 10px;
+		}+B\
+
+		#myChart-top {
+			border: 1px solid #D9D9D9;
+			box-shadow: 10px 10px 5px -4px rgba(224, 224, 224, 0.6);
+		}
+	</style>
+</head>
+
+<body class="subpage">
+
+	<!-- Header -->
+	<header id="header">
+		<div class="logo"><a href="index.html">POSCARE <span>포스코 AI BigData Academy B반 3조</span></a></div>
+		<!-- <a href="#menu" class="toggle"><span>Menu</span></a> -->
+	</header>
+
+	<!-- Nav -->
+	<!-- <nav id="menu">
+		<ul class="links">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="calculate.html">calculate</a></li>
+			<li><a href="etc.html">Etc</a></li>
+		</ul>
+	</nav> -->
+
+	<!-- One -->
+	<section id="one" class="wrapper style2">
+		<div class="inner">
+			<div class="box">
+				<div class="content">
+					<!-- <h4>5대 질환 진단(당뇨병, 고혈압, 간장질환, 혈관질환, 신장질환)</h4> -->
+					<dl>
+						<h3 style="text-transform: capitalize; font: bold 30px Helvetica, Arial,sans-serif">5대 질환 진단</h3>
+						<dd>
+							<!-- <p style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif">당뇨 - 식전혈당</p>
+							<p style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif">고혈압 - 혈압(수축),혈압(이완) </p>
+							<p style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif">간장질환 - 혈청지오티AST,혈청지오티ALT,감마지티</p>
+							<p style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif">혈관질환 - 총콜레스테롤,HDL콜레스테롤,LDL콜레스테롤,트리글리세라이드</p>
+							<p style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif">신장질환 - 요단백,혈청크레아티닌</p> -->
+						</dd>
+					</dl>
+					<div class="row">
+						<div class="col" style="width:50%">
+						<h2 style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif" id="elements">신체정보 입력</h2>
+
+						<form action="upload_name.php" method="post" enctype="multipart/form-data">
+						<div class="col">
+							<div class="6u 12u$(xsmall)" style="display: inline">
+								<div class="row">
+										<div class="field half first">
+											<dd style="width:100%">이름</dd>
+											<input type="text" style="width:100%" name="value" id="name" value="Daniel" placeholder="이름" margin-bottom="50px"/>
+											<dd style="width:100%">나이</dd>
+											<input type="text" style="width:100%" name="value" id="age" value="40" placeholder="40" align="right">
+											<dd style="width:100%">몸무게(kg)</dd>
+											<input type="text" style="width:100%"name="value" id="weight" value="80" placeholder="80" margin-right="500px"/>
+										</div>
+
+										<div class="field half">
+											<dd style="width:100%">성별</dd>
+											<div class="select-wrapper" style="width:100%">
+												<select name="sex" id="sex" >
+													<option value="">성별</option>
+													<option value="남" selected="selected">남</option>
+													<option value="여">여</option>
+												</select>
+											</div>
+											<dd style="width:100%">키(cm)</dd>
+											<input type="text" style="width:100%" name="value" id="height" value="180" placeholder="180" align="right">
+											<dd style="width:100%">허리둘레(cm)</dd>
+											<input type="text" style="width:100%"name="value" id="waist" value="80" placeholder="허리둘레" margin-bottom="50px"/>
+
+										</div>
+							</div>
+							<!-- 당뇨 -->
+							<h3 style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif">당뇨병 진단</h3>
+							<div class="row">
+								<div class="field half first">
+								<dd>식전혈당</dd>
+								<input type="text" name="value" id="bloodSugar" value="100" placeholder="식전혈당" margin-bottom="50px"/ width="50%">
+								<br>
+								</div>
+								<div class="field half">
+									<dd>혈색소</dd>
+									<input type="text" name="value" id="hg" value="3" placeholder="혈색소" margin-bottom="50px"/>
+								</div>
+							</div>
+
+								<!-- 고혈압 -->
+								<h3 style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif">고혈압 진단</h3>
+								<div class="row">
+										<div class="field half first">
+											<dd>혈압(최고)</dd>
+											<input type="text" name="value" id="bloodHigh" value="120" placeholder="혈압(최고)" margin-bottom="50px"/>
+										</div>
+										<div class="field half">
+											<dd>혈압(최저)</dd>
+											<input type="text" name="value" id="bloodLow" value="80" placeholder="혈압(최저)" margin-bottom="50px"/>
+
+										</div>
+								</div>
+								<!-- 간장질환 -->
+								<h3 style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif">간장질환 진단</h3>
+								<div class="row">
+										<div class="field half first">
+											<dd>혈청지오티AST</dd>
+											<input type="text" name="value" id="ast" value="30" placeholder="혈청지오티AST" margin-bottom="50px"/>
+											<dd>감마지티피</dd>
+											<input type="text" name="value" id="gtp" value="50" placeholder="감마지티피" margin-bottom="50px"/>
+										</div>
+										<div class="field half">
+											<dd>혈청지오티ALT</dd>
+											<input type="text" name="value" id="alt" value="30" placeholder="혈청지오티ALT" margin-bottom="50px"/>
+										</div>
+								</div>
+
+
+								<br><br>
+
+								<!-- 이상지질혈증 -->
+								<h3 style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif">혈관질환(이상지질혈증) 진단</h3>
+								<div class="row">
+										<div class="field half first">
+											<dd>총콜레스테롤</dd>
+											<input type="text" name="value" id="clsterol" value="150" placeholder="총콜레스테롤" margin-bottom="50px"/>
+											<dd>LDL콜레스테롤</dd>
+											<input type="text" name="value" id="ldl" value="100" placeholder="LDL" margin-bottom="50px"/>
+										</div>
+										<div class="field half">
+											<dd>HDL콜레스테롤</dd>
+											<input type="text" name="value" id="hdl" value="80" placeholder="HDL" margin-bottom="50px"/>
+											<dd>트리글리세라이드</dd>
+											<input type="text" name="value" id="tg" value="100" placeholder="트리글리세라이드" margin-bottom="50px"/>
+										</div>
+								</div>
+								<br><br>
+
+								<!-- 신장질환 -->
+								<h3 style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif">신장질환 진단</h3>
+								<div class="row">
+										<div class="field half first">
+											<dd>요단백</dd>
+											<input type="text" name="value" id="urineProtein" value="15" placeholder="요단백" margin-bottom="50px"/>
+										</div>
+										<div class="field half">
+											<dd>혈청크레아티닌</dd>
+											<input type="text" name="value" id="creatinine" value="0.7" placeholder="혈청크레아티닌" margin-bottom="50px"/>
+										</div>
+								</div>
+								<br>
+								<a href="#movePoint" class="button special scrolly" onclick="button_click();">진단</a>
+
+							</div>
+						</div>
+					</div> <!--좌측  -->
+				</form>
+							<div class="6u$ 12u$(medium)">
+								<h3 style="text-transform: capitalize; font: bold 20px Helvetica, Arial,sans-serif" id="movePoint"> 진단 결과</h3>
+								<div class="row">
+									<div class="field half first">
+										<dd>이름</dd>
+										<textarea id="output_name" style="width:70px height:50px"readonly="readonly"></textarea>
+										<dd>당뇨</dd>
+										<textarea id="outputDiabetes" style="width:70px height:50px"readonly="readonly"></textarea>
+										<dd>간장질환</dd>
+										<textarea id="outputLiver" style="width:70px height:50px"readonly="readonly"></textarea>
+										<dd>신장질환</dd>
+										<textarea id="outputKidney" style="width:70px height:50px"readonly="readonly"></textarea>
+									</div>
+									<div class="field half">
+										<dd>BMI 수치</dd>
+										<textarea id="outputBMI" style="width:70px height:50px"readonly="readonly"></textarea>
+										<dd>혈압</dd>
+										<textarea id="outputBloodPressure" style="width:70px height:50px"readonly="readonly"></textarea>
+										<dd>혈관질환</dd>
+										<textarea id="outputVascular" style="width:70px height:50px"readonly="readonly"></textarea>
+									</div>
+								</div>
+								<br><br>
+								<button onclick="cancerValue()" class="button special scrolly">암 진단 확률 및 생활처방</button>
+								<a href="etc.html" class="button special scrolly">근처 병원 안내</a>
+
+								<!--<div id='myChart'><a class="zc-ref" href="https://www.zingchart.com/">Charts by ZingChart</a></div>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Four -->
+	<section id="four" class="wrapper style3">
+		<div class="inner">
+
+			<header class="align-center">
+				<h2>POSCO 사전 질병 예측 및 진단</h2>
+				<p>경상북도 포항시 남구 지곡로 120 포스코인재창조원 B동</p>
+				<p>
+					<font size : "4">Email : reward00@naver.com</font>
+				</p>
+			</header>
+		</div>
+	</section>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script>function button_click(){
+		var name = document.getElementById("name").value;
+		var sex = document.getElementById("sex").value;
+		var age = document.getElementById("age").value;
+		var height = document.getElementById("height").value;
+		var weight = document.getElementById("weight").value;
+		var waist = document.getElementById("waist").value;
+
+		var bloodHigh = document.getElementById("bloodHigh").value;
+		var bloodLow = document.getElementById("bloodLow").value;
+
+		var clsterol = document.getElementById("clsterol").value;
+		var hdl = document.getElementById("hdl").value;
+		var ldl = document.getElementById("ldl").value;
+		var tg = document.getElementById("tg").value;
+		var hg = document.getElementById("hg").value;
+
+		var bloodSugar = document.getElementById("bloodSugar").value;
+		var urineProtein = document.getElementById("urineProtein").value;
+		var creatinine = document.getElementById("creatinine").value;
+
+		var ast = document.getElementById("ast").value;
+		var alt = document.getElementById("alt").value;
+		var gtp = document.getElementById("gtp").value;
+
+		// BMI
+		document.getElementById("output_name").value=name;
+		function Ceiling(n,pos){
+			var digits=Math.pow(10,pos);
+			var num= Math.ceil(n*digits)/digits;
+			return num.toFixed(pos);
+		}
+		var bmi = (weight/((height/100)*(height/100)));
+		bmi=Ceiling(bmi,2);
+		document.getElementById("outputBMI").value=bmi;
+
+		// 당뇨
+		if(bloodSugar<126&& hg<6.5){
+				document.getElementById("outputDiabetes").value="정상";
+		}
+		else{
+			document.getElementById("outputDiabetes").value="당뇨병 의심";
+		}
+
+		// 혈압
+
+		if(bloodHigh>160 || bloodLow>100){
+				document.getElementById("outputBloodPressure").value="2단계 고혈압 의심";
+		}
+		else if(bloodHigh>140 || bloodLow>90){
+				document.getElementById("outputBloodPressure").value="1단계 고혈압 의심";
+		}
+		else if(bloodHigh>120 || bloodLow>80){
+				document.getElementById("outputBloodPressure").value="전고혈압 의심";
+		}
+		else{
+			document.getElementById("outputBloodPressure").value="정상";
+		}
+
+		//간질환		var smoke = document.getElementById("smoke").value;
+
+		if(ast>35 || alt>40 || gtp>60){
+				document.getElementById("outputLiver").value="간장질환 의심";
+		}
+		else{
+			document.getElementById("outputLiver").value="정상";
+		}
+
+		//혈관질환
+		if(sex=='남' && (ldl>190 || clsterol>240 || hdl<40 || tg>500)	){
+				document.getElementById("outputVascular").value="혈관질환 아주위험";
+		}
+		else if(sex=='여' && (ldl>190 || clsterol>240 || hdl<50 || tg>500)	){
+				document.getElementById("outputVascular").value="혈관질환 아주위험";
+		}
+		else if((ldl>130 || clsterol>200 || tg>150)){
+				document.getElementById("outputVascular").value="혈관질환 위험";
+		}
+		else{
+			document.getElementById("outputVascular").value="정상";
+		}
+
+		//신장질환
+		var gfr;
+		if(sex=='남'){
+			gfr = (186*Math.pow(creatinine,-1.154) * Math.pow(age,-0.203));
+		}
+		else{
+			gfr = (186*Math.pow(creatinine,-1.154) * Math.pow(age,-0.203))*0.742;
+		}
+		if(gfr>=90){
+				document.getElementById("outputKidney").value="1단계 정상";
+		}
+		else if(gfr<90 && gfr>=60){
+				document.getElementById("outputKidney").value="2단계 잠재위험";
+		}
+		else if(gfr<60 && gfr>=30){
+				document.getElementById("outputKidney").value="3단계 위험";
+		}
+		else if(gfr<30 && gfr>=15){
+				document.getElementById("outputKidney").value="4단계 위험";
+		}
+		else{
+			document.getElementById("outputKidney").value="5단계 매우위험";
+		}
+
+		// alert(name);
+	}
+	</script>
+	<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
+	<script language="javascript">
+   function cancerValue() {
+		 var name = document.getElementById("name").value;
+		 var diabetes;
+		 var bloodPresssure;
+		 var liver;
+		 var vascular;
+		 var kidney;
+		 //Diabetes
+		 if(document.getElementById("outputDiabetes").value!="정상"){
+			 diabetes=1;
+		 }
+		 else{
+			 diabetes=0;
+		 }
+
+		 //bloodPressure
+		 if(document.getElementById("outputBloodPressure").value=="2단계 고혈압 의심"){
+			 bloodPresssure=3;
+		 }else if(document.getElementById("outputBloodPressure").value=="1단계 고혈압 의심"){
+			 bloodPresssure=2;
+		 }
+		 else if(document.getElementById("outputBloodPressure").value=="전고혈압 의심"){
+			 bloodPresssure=1;
+		 }
+		 else{
+			 bloodPresssure=0;
+		 }
+
+		 //liver
+		 if(document.getElementById("outputLiver").value!="정상"){
+			 liver=1;
+		 }
+		 else{
+			 liver=0;
+		 }
+
+		 //vascular
+		 if(document.getElementById("outputVascular").value=="혈관질환 아주위험"){
+			 vascular=2;
+		 }else if(document.getElementById("outputVascular").value=="혈관질환 위험"){
+			 vascular=1;
+		 }
+		 else{
+			 vascular=0;
+		 }
+
+		 //kidney
+		 if(document.getElementById("outputKidney").value=="2단계 잠재위험"){
+			 kidney=2;
+		 }
+		 else if(document.getElementById("outputKidney").value=="3단계 위험"){
+			 kidney=3;
+		 }
+		 else if(document.getElementById("outputKidney").value=="4단계 위험"){
+			 kidney=4;
+		 }
+		 else if(document.getElementById("outputKidney").value=="5단계 매우위험"){
+			 kidney=5;
+		 }
+		 else{
+			 kidney=0;
+		 }
+
+		 //Submit
+		 location.href="cancer.html?" + name + ":" + diabetes+":" + bloodPresssure+":" + liver+":" + vascular+":" + kidney;
+   }
+  </script>
+</body>
+
+</html>
